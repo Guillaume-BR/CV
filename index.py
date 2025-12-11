@@ -130,7 +130,7 @@ with st.sidebar:
              style="width: 150px; height: 150px; margin: 20px auto;" 
              alt="Photo de profil">
         <h3 style='text-align: center; color: #667BC6;'>Guillaume Bernard-Reymond</h3>
-        <p style='text-align: center; color: #b0b0b0; font-size: 14px;'>Développeur Full Stack</p>
+        <p style='text-align: center; color: #b0b0b0; font-size: 14px;'>Data Scientist - Python/R - MLOps</p>
     """, unsafe_allow_html=True)
     
     st.title("Navigation 🧭")
@@ -148,30 +148,48 @@ if page == "🏠 Projets":
     
     # Exemple de projets (à personnaliser)
     projets = [
+        
         {
-            "titre": "Projet 1 - Meteo Montpeul",
-            "description": "Application météorologique à Montpellier sur 4 jours",
-            "technos": ["Python", "API météo" , "Quarto" , "GitHub Pages", "CI/CD"],
-            "lien": "https://guillaume-br.github.io/meteo-gbr/",
-            "image": "data/meteo.png",
-            "date": "Décembre 2024"
+            "titre": "Projet 1 - La durée d'hospitalisation",
+            "description": "Création d'une application de prévision de la durée d'hospitalisation en fonction de différents paramètres.",
+            "technos": ["Python", "ScikitLearn" , "Xgboost",  "Streamlit","FastAPI" ],
+            "lien": "https://duree-hospitalisation.streamlit.app/",
+            "image": "data/hospitalisation.png",
+            "date": "Novembre 2025"
         },
         {
-            "titre": "Projet 2 - Occitanie Quality Air Explorer",
+            "titre": "Projet 2 - Le fléau des féminicides",
+            "description": "Création d'une",
+            "technos": ["Python", "Streamlit", "OpenAI", "Geopy","Geopandas"],
+            "lien": "https://femicide-france.streamlit.app/",
+            "image": "data/feminicide.png",
+            "date": "Septembre 2025"
+        },
+        {
+            "titre": "Projet 3 - Picross",
+            "description": "Développement d'un jeu de Picross en Shiny",
+            "technos": ["R", "Shiny"],
+            "lien": "maxencelamure.shinyapps.io/Picross",
+            "image": "data/picross.png",
+            "date": "Mars 2024"
+        },
+        {
+            "titre": "Projet 4 - Occitanie Quality Air Explorer",
             "description": "Projet de groupe sur la visualisation du taux de polluants dans l'air de certaines villes d'Occitanie",
             "technos": ["Python", "Shiny-Python","Quarto", "GitHub Pages", "CI/CD"],
             "lien": "https://gagginilorenzo.github.io/HAX712X_group5_project/q.html",
             "image": "data/oqae.png",
-            "date": "Octobre 2024"
+            "date": "Novembre 2023"
         },
         {
-            "titre": "Projet 3 - Le fléau des féminicides",
-            "description": "Développement d'une API complète",
-            "technos": ["FastAPI", "PostgreSQL", "Docker", "JWT"],
-            "lien": "https://femicide-france.streamlit.app/",
-            "image": "data/feminicide.png",
-            "date": "Novembre 2024"
-        }
+            "titre": "Projet 5 - Meteo Montpeul",
+            "description": "Prévision météorologique à Montpellier sur 4 jours",
+            "technos": ["Python", "API météo" , "Quarto" , "GitHub Pages", "CI/CD"],
+            "lien": "https://guillaume-br.github.io/meteo-gbr/",
+            "image": "data/meteo.png",
+            "date": "Octobre 2023"
+        },
+
     ]
     
 
@@ -214,24 +232,6 @@ if page == "🏠 Projets":
             st.markdown(f"[🔗 Voir le projet]({projet['lien']})")
             st.markdown("---")
 
-# Page Photo
-elif page == "📸 Photo":
-    st.title("📸 Photo Personnelle")
-    st.markdown("---")
-    
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        # Placeholder pour votre photo
-        st.image("https://via.placeholder.com/300x300/667BC6/ffffff?text=Votre+Photo", 
-                 caption="Votre Nom")
-        st.markdown("""
-        <div style='text-align: center'>
-            <h3>Votre Nom</h3>
-            <p style='font-size: 18px; color: #666;'>
-                Développeur Full Stack | Data Scientist | Passionné de technologie
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
 
 # Page CV
 elif page == "📄 CV":
@@ -243,11 +243,11 @@ elif page == "📄 CV":
     with col1:
         st.image("https://via.placeholder.com/200x200/667BC6/ffffff?text=Photo", width=200)
         st.markdown("### Informations")
-        st.write("📧 email@exemple.com")
-        st.write("📱 +33 6 12 34 56 78")
-        st.write("📍 Paris, France")
-        st.write("🔗 [LinkedIn](#)")
-        st.write("💻 [GitHub](#)")
+        st.write("📧 guillaume.bernardreymond@gmail.com")
+        st.write("📱 +33 6 12 63 31 42")
+        st.write("📍 Montpellier, France")
+        st.write("🔗 [LinkedIn](www.linkedin.com/in/guillaume-bernardreymond)")
+        st.write("💻 [GitHub](https://github.com/Guillaume-BR/)")
     
     with col2:
         st.markdown("## 👨‍💻 Expérience Professionnelle")
@@ -273,19 +273,29 @@ elif page == "📄 CV":
         st.markdown("---")
         st.markdown("## 🛠️ Compétences")
         
-        col_skill1, col_skill2 = st.columns(2)
+        col_skill1, col_skill2, col_skills3 = st.columns(3)
         
-        with col_skill1:
-            st.markdown("**Langages**")
-            st.write("• Python")
-            st.write("• JavaScript")
-            st.write("• SQL")
-            
-        with col_skill2:
-            st.markdown("**Frameworks**")
-            st.write("• React")
-            st.write("• Django")
+        with col_skills1:
+            st.markdown("**Compétences**")
+            st.write("• Data visualiation / dashboards")
+            st.write("• Pipeline Machine Learning / Deep Learning")
+            st.write("• Shiny")
             st.write("• Streamlit")
+
+        with col_skill2:
+            st.markdown("**Langages**")
+            st.write("• Bash/Linux")
+            st.write("• Python")
+            st.write("• SQL")
+            st.write("• R")
+            
+        with col_skill3:
+            st.markdown("**Frameworks**")
+            st.write("• Streamlit")
+            st.write("• Shiny")
+            st.write("• Streamlit")
+
+        
 
 # Page Contact
 elif page == "📧 Contact":
@@ -358,6 +368,6 @@ elif page == "📧 Contact":
 st.markdown("---")
 st.markdown("""
     <div style='text-align: center; color: #666;'>
-        <p>© 2024 - Votre Nom | Créé avec ❤️ et Streamlit</p>
+        <p>© 2024 - Guillaume Bernard-Reymond | Créé avec ❤️ et Streamlit</p>
     </div>
 """, unsafe_allow_html=True)
