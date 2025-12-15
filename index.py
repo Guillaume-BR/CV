@@ -395,16 +395,67 @@ elif page == "📄 CV":
         st.write("🔗 [LinkedIn](https://www.linkedin.com/in/guillaume-bernardreymond)")
         st.write("💻 [GitHub](https://github.com/Guillaume-BR/)")
         
-        st.markdown("---")
         st.markdown("### 🌐 Langues")
         st.write("🇫🇷 Français - Langue maternelle")
         st.write("🇬🇧 Anglais - Professionnel")
 
-        st.markdown("---")
+        try:
+            with open("data/cv.pdf", "rb") as pdf_file:
+                pdf_bytes = pdf_file.read()
 
-        # Bouton de téléchargement du CV
-        st.markdown("### 📥 Télécharger mon CV")
-        st.markdown("[⬇️ Télécharger le CV en PDF](#)")  # Remplacer par le lien réel
+                # Encoder le PDF en base64 pour le téléchargement
+                pdf_base64 = base64.b64encode(pdf_bytes).decode()
+
+                st.markdown(f"""
+                    <a href="data:application/pdf;base64,{pdf_base64}" 
+                       download="CV_Guillaume_Bernard-Reymond.pdf"
+                       style="text-decoration: none;">
+                        <div style="
+                            background: #252538;
+                            color: white;
+                            padding: 15px 30px;
+                            border-radius: 50px;
+                            text-align: center;
+                            font-weight: bold;
+                            font-size: 16px;
+                            border: 3px solid #667BC6;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            display: inline-block;
+                            box-shadow: 0 4px 15px rgba(102, 123, 198, 0.3);"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(102, 123, 198, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(102, 123, 198, 0.3)';">
+                            ⬇️ Télécharger le CV en PDF
+                        </div>
+                    </a>
+                """, unsafe_allow_html=True)
+
+        except FileNotFoundError:
+            # Fallback vers GitHub si le fichier n'est pas trouvé localement
+            st.markdown("""
+                <a href="https://raw.githubusercontent.com/Guillaume-BR/CV/main/data/cv.pdf" 
+                   download="CV_Guillaume_Bernard-Reymond.pdf"
+                   target="_blank"
+                   style="text-decoration: none;">
+                    <div style="
+                        background: linear-gradient(135deg, #667BC6 0%, #8B9FE8 100%);
+                        color: white;
+                        padding: 15px 30px;
+                        border-radius: 50px;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 16px;
+                        border: 3px solid #667BC6;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        display: inline-block;
+                        box-shadow: 0 4px 15px rgba(102, 123, 198, 0.3);"
+                        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(102, 123, 198, 0.5)';"
+                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(102, 123, 198, 0.3)';">
+                        ⬇️ Télécharger le CV en PDF
+                    </div>
+                </a>
+            """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("## 👨‍💼 Expérience Professionnelle")
@@ -475,12 +526,8 @@ elif page == "📄 CV":
         st.markdown("### **Master en Mathématiques Fondamentales** | Université de Grenoble")
         st.write("*Septembre 2006 - Août 2009 | Mention Assez Bien*")
         st.write("Théorie géométrique des groupes • Géométrie Riemannienne")
-        
-        st.markdown("---")
-
-        
-
-        
+            
+       
 
 # Page Contact
 elif page == "📧 Contact":
