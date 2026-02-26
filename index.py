@@ -4,14 +4,11 @@ import base64
 from io import BytesIO
 
 # Configuration de la page
-st.set_page_config(
-    page_title="Mon Portfolio",
-    page_icon="💼",
-    layout="wide"
-)
+st.set_page_config(page_title="Mon Portfolio", page_icon="💼", layout="wide")
 
 # CSS personnalisé
-st.markdown("""
+st.markdown(
+    """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
     
@@ -180,9 +177,12 @@ st.markdown("""
         background-color: #7d8fd9;
     }
     </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # Sidebar
+
 
 def get_image_base64(image_path):
     """Convertit une image en base64"""
@@ -192,12 +192,14 @@ def get_image_base64(image_path):
     except FileNotFoundError:
         return None
 
+
 with st.sidebar:
     # Convertir l'image en base64
     img_base64 = get_image_base64("data/identite.jpeg")
-    
+
     if img_base64:
-        st.markdown(f"""
+        st.markdown(
+            f"""
             <div style="text-align: center;">
                 <img src="data:image/jpeg;base64,{img_base64}"
                      style="width: 150px;
@@ -211,72 +213,87 @@ with st.sidebar:
                 <h3 style='color: #667BC6; margin-top: 10px;'>Guillaume Bernard-Reymond</h3>
                 <p style='color: #b0b0b0; font-size: 14px;'>Data Scientist - Python/R - MLOps</p>
             </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
     else:
         st.warning("Image non trouvée dans data/identite.jpeg")
-    
+
     st.title("Navigation 🧭")
     page = st.radio("", ["🏠 Projets", "📄 CV", "📧 Contact"])
-    
+
     st.markdown("---")
     st.markdown("### À propos")
     st.write("Portfolio interactif créé avec Streamlit")
-    
+
 
 # Page Projets
 if page == "🏠 Projets":
     st.title("🚀 Mes Projets")
     st.markdown("---")
-    
+
     # Exemple de projets (à personnaliser)
     projets = [
-        
         {
-            "titre": "Projet 1 - La durée d'hospitalisation",
+            "titre": "Projet 1 - Segmentation d'une séquence ADN",
+            "description": "Création d'une application de segmentation d'une séquence ADN en utilisant des algorithmes basés sur les châines de Markov cachées.",
+            "technos": ["R", "HMM", "Shiny"],
+            "lien": "https://guillaumebr.shinyapps.io/segmention",
+            "image": "data/segmentation.png",
+            "date": "Février 2026",
+        },
+        {
+            "titre": "Projet 2 - La durée d'hospitalisation",
             "description": "Création d'une application de prévision de la durée d'hospitalisation en fonction de différents paramètres.",
-            "technos": ["Python", "ScikitLearn" , "Xgboost",  "Streamlit","FastAPI" ],
+            "technos": ["Python", "ScikitLearn", "Xgboost", "Streamlit", "FastAPI"],
             "lien": "https://duree-hospitalisation.streamlit.app/",
             "image": "data/hospitalisation.png",
-            "date": "Novembre 2025"
+            "date": "Novembre 2025",
         },
         {
-            "titre": "Projet 2 - Le fléau des féminicides",
+            "titre": "Projet 3 - Le fléau des féminicides",
             "description": "Création d'une",
-            "technos": ["Python", "Streamlit", "OpenAI", "Geopy","Geopandas"],
+            "technos": ["Python", "Streamlit", "OpenAI", "Geopy", "Geopandas"],
             "lien": "https://femicide-france.streamlit.app/",
             "image": "data/feminicide.png",
-            "date": "Septembre 2025"
+            "date": "Septembre 2025",
         },
         {
-            "titre": "Projet 3 - Picross",
+            "titre": "Projet 4 - Picross",
             "description": "Développement d'un jeu de Picross en Shiny",
             "technos": ["R", "Shiny"],
             "lien": "https://maxencelamure.shinyapps.io/Picross",
             "image": "data/picross.png",
-            "date": "Mars 2024"
+            "date": "Mars 2024",
         },
         {
-            "titre": "Projet 4 - Occitanie Quality Air Explorer",
+            "titre": "Projet 5 - Occitanie Quality Air Explorer",
             "description": "Projet de groupe sur la visualisation du taux de polluants dans l'air de certaines villes d'Occitanie",
-            "technos": ["Python", "Shiny-Python", "API" , "Quarto", "GitHub Pages", "CI/CD"],
+            "technos": [
+                "Python",
+                "Shiny-Python",
+                "API",
+                "Quarto",
+                "GitHub Pages",
+                "CI/CD",
+            ],
             "lien": "https://gagginilorenzo.github.io/HAX712X_group5_project/q.html",
             "image": "data/oqae.png",
-            "date": "Novembre 2023"
+            "date": "Novembre 2023",
         },
         {
-            "titre": "Projet 5 - Meteo Montpeul",
+            "titre": "Projet 6 - Meteo Montpeul",
             "description": "Prévision météorologique à Montpellier sur 4 jours",
-            "technos": ["Python", "API météo" , "Quarto" , "GitHub Pages", "CI/CD"],
+            "technos": ["Python", "API météo", "Quarto", "GitHub Pages", "CI/CD"],
             "lien": "https://guillaume-br.github.io/meteo-gbr/",
             "image": "data/meteo.png",
-            "date": "Octobre 2023"
+            "date": "Octobre 2023",
         },
-
     ]
-    
+
     n_cols = 3
     n_rows = (len(projets) + n_cols - 1) // n_cols  # Nombre de lignes nécessaires
-    
+
     for row in range(n_rows):
         # Ligne des titres
         cols_titre = st.columns(n_cols)
@@ -285,16 +302,18 @@ if page == "🏠 Projets":
             if projet_idx < len(projets):
                 with cols_titre[col_idx]:
                     st.markdown(f"### {projets[projet_idx]['titre']}")
-        
+
         # Ligne des dates
         cols_date = st.columns(n_cols)
         for col_idx in range(n_cols):
             projet_idx = row * n_cols + col_idx
             if projet_idx < len(projets):
                 with cols_date[col_idx]:
-                    st.markdown(f"<p style='color: #667BC6; font-size: 14px;'>📅 {projets[projet_idx]['date']}</p>", 
-                               unsafe_allow_html=True)
-        
+                    st.markdown(
+                        f"<p style='color: #667BC6; font-size: 14px;'>📅 {projets[projet_idx]['date']}</p>",
+                        unsafe_allow_html=True,
+                    )
+
         # Ligne des images
         cols_image = st.columns(n_cols)
         for col_idx in range(n_cols):
@@ -303,13 +322,14 @@ if page == "🏠 Projets":
                 with cols_image[col_idx]:
                     projet = projets[projet_idx]
                     try:
-                        img = Image.open(projet['image'])
+                        img = Image.open(projet["image"])
                         buffered = BytesIO()
                         img.save(buffered, format="PNG")
                         img_str = base64.b64encode(buffered.getvalue()).decode()
-                        
-                        st.markdown(f"""
-                            <a href="{projet['lien']}" target="_blank" style="text-decoration: none;">
+
+                        st.markdown(
+                            f"""
+                            <a href="{projet["lien"]}" target="_blank" style="text-decoration: none;">
                                 <img src="data:image/png;base64,{img_str}" 
                                      style="width: 100%; 
                                             height: 200px; 
@@ -319,24 +339,29 @@ if page == "🏠 Projets":
                                             transition: transform 0.2s, box-shadow 0.2s;" 
                                      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(102, 123, 198, 0.5)';"
                                      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
-                                     alt="{projet['titre']}">
+                                     alt="{projet["titre"]}">
                             </a>
-                        """, unsafe_allow_html=True)
+                        """,
+                            unsafe_allow_html=True,
+                        )
                     except Exception as e:
                         st.error(f"Image non trouvée: {projet['image']}")
-        
+
         # Ligne des descriptions
         cols_desc = st.columns(n_cols)
         for col_idx in range(n_cols):
             projet_idx = row * n_cols + col_idx
             if projet_idx < len(projets):
                 with cols_desc[col_idx]:
-                    st.markdown(f"""
+                    st.markdown(
+                        f"""
                         <div style='min-height: 60px; color: #e0e0e0; margin: 10px 0;'>
-                            {projets[projet_idx]['description']}
+                            {projets[projet_idx]["description"]}
                         </div>
-                    """, unsafe_allow_html=True)
-        
+                    """,
+                        unsafe_allow_html=True,
+                    )
+
         # Ligne des technologies
         cols_tech = st.columns(n_cols)
         for col_idx in range(n_cols):
@@ -345,11 +370,13 @@ if page == "🏠 Projets":
                 with cols_tech[col_idx]:
                     st.markdown("**Technologies :**")
                     technos_html = "<div style='min-height: 100px;'>"
-                    for techno in projets[projet_idx]['technos']:
-                        technos_html += f"<p style='color: #e0e0e0; margin: 5px 0;'>• {techno}</p>"
+                    for techno in projets[projet_idx]["technos"]:
+                        technos_html += (
+                            f"<p style='color: #e0e0e0; margin: 5px 0;'>• {techno}</p>"
+                        )
                     technos_html += "</div>"
                     st.markdown(technos_html, unsafe_allow_html=True)
-        
+
         # Ligne des liens
         cols_lien = st.columns(n_cols)
         for col_idx in range(n_cols):
@@ -357,7 +384,7 @@ if page == "🏠 Projets":
             if projet_idx < len(projets):
                 with cols_lien[col_idx]:
                     st.markdown(f"[🔗 Voir le projet]({projets[projet_idx]['lien']})")
-        
+
         # Séparateur entre les lignes de projets
         if row < n_rows - 1:
             st.markdown("---")
@@ -367,34 +394,34 @@ if page == "🏠 Projets":
 elif page == "📄 CV":
     st.title("📄 Curriculum Vitae")
     st.markdown("---")
-    
+
     col1, col2 = st.columns([1, 2])
-    
+
     with col1:
-    #    # Photo de profil (utiliser la même que la sidebar)
-    #    img_base64 = get_image_base64("data/identite.jpeg")
-    #    if img_base64:
-    #        st.markdown(f"""
-    #            <div style="text-align: center;">
-    #                <img src="data:image/jpeg;base64,{img_base64}" 
-    #                     style="width: 200px; 
-    #                            height: 200px; 
-    #                            border-radius: 50%; 
-    #                            object-fit: cover;
-    #                            border: 3px solid #667BC6;
-    #                            margin: 20px auto;
-    #                            display: block;" 
-    #                     alt="Photo de profil">
-    #            </div>
-    #        """, unsafe_allow_html=True)
-        
+        #    # Photo de profil (utiliser la même que la sidebar)
+        #    img_base64 = get_image_base64("data/identite.jpeg")
+        #    if img_base64:
+        #        st.markdown(f"""
+        #            <div style="text-align: center;">
+        #                <img src="data:image/jpeg;base64,{img_base64}"
+        #                     style="width: 200px;
+        #                            height: 200px;
+        #                            border-radius: 50%;
+        #                            object-fit: cover;
+        #                            border: 3px solid #667BC6;
+        #                            margin: 20px auto;
+        #                            display: block;"
+        #                     alt="Photo de profil">
+        #            </div>
+        #        """, unsafe_allow_html=True)
+
         st.markdown("### 📋 Informations")
         st.write("📧 guillaume.bernardreymond@gmail.com")
         st.write("📱 +33 6 12 63 31 42")
         st.write("📍 Montpellier, France")
         st.write("🔗 [LinkedIn](https://www.linkedin.com/in/guillaume-bernardreymond)")
         st.write("💻 [GitHub](https://github.com/Guillaume-BR/)")
-        
+
         st.markdown("### 🌐 Langues")
         st.write("🇫🇷 Français - Langue maternelle")
         st.write("🇬🇧 Anglais - Professionnel")
@@ -406,7 +433,8 @@ elif page == "📄 CV":
                 # Encoder le PDF en base64 pour le téléchargement
                 pdf_base64 = base64.b64encode(pdf_bytes).decode()
 
-                st.markdown(f"""
+                st.markdown(
+                    f"""
                     <a href="data:application/pdf;base64,{pdf_base64}" 
                        download="CV_Guillaume_Bernard-Reymond.pdf"
                        style="text-decoration: none;">
@@ -428,11 +456,14 @@ elif page == "📄 CV":
                             ⬇️ Télécharger le CV en PDF
                         </div>
                     </a>
-                """, unsafe_allow_html=True)
+                """,
+                    unsafe_allow_html=True,
+                )
 
         except FileNotFoundError:
             # Fallback vers GitHub si le fichier n'est pas trouvé localement
-            st.markdown("""
+            st.markdown(
+                """
                 <a href="https://raw.githubusercontent.com/Guillaume-BR/CV/main/data/cv.pdf" 
                    download="CV_Guillaume_Bernard-Reymond.pdf"
                    target="_blank"
@@ -455,33 +486,45 @@ elif page == "📄 CV":
                         ⬇️ Télécharger le CV en PDF
                     </div>
                 </a>
-            """, unsafe_allow_html=True)
-    
+            """,
+                unsafe_allow_html=True,
+            )
+
     with col2:
         st.markdown("## 👨‍💼 Expérience Professionnelle")
-        
+
         st.markdown("### **Stagiaire en Data Science et Modélisation** | Engie-Green")
         st.write("*Mars 2025 - Août 2025*")
-        st.write("**Création de jumeaux numériques de parcs éoliens par Machine Learning :**")
-        st.write("• Extraction, fiabilisation et analyse de bases de données issues de capteurs")
+        st.write(
+            "**Création de jumeaux numériques de parcs éoliens par Machine Learning :**"
+        )
+        st.write(
+            "• Extraction, fiabilisation et analyse de bases de données issues de capteurs"
+        )
         st.write("• Implémentation et comparaison de modèles de Machine Learning")
         st.write("• Analyse de résultats physiques et extraction d'insights")
         st.write("• Rédaction de rapport de synthèse")
-        st.write("• Communication et présentation de résultats à une équipe pluridisciplinaire")
-        
+        st.write(
+            "• Communication et présentation de résultats à une équipe pluridisciplinaire"
+        )
+
         st.markdown("### **Enseignant de Mathématiques** | Éducation Nationale")
         st.write("*2009 - 2024*")
         st.write("• Enseignement en collège, lycée et CPGE")
-        st.write("• Responsable d'équipe d'enseignants pour la coordination entre pairs")
+        st.write(
+            "• Responsable d'équipe d'enseignants pour la coordination entre pairs"
+        )
         st.write("• Formateur de professeurs stagiaires")
-        st.write("• Concepteur/Correcteur de sujets de concours (Olympiades, CRPE, CCP)")
-        
+        st.write(
+            "• Concepteur/Correcteur de sujets de concours (Olympiades, CRPE, CCP)"
+        )
+
         st.markdown("---")
 
         st.markdown("## 🛠️ Compétences")
-        
+
         col_skill1, col_skill2, col_skill3 = st.columns(3)
-        
+
         with col_skill1:
             st.markdown("**💻 Informatique**")
             st.write("• Python / R")
@@ -491,7 +534,7 @@ elif page == "📄 CV":
             st.write("• Streamlit / Shiny")
             st.write("• Machine Learning / Deep Learning")
             st.write("• Tests unitaires")
-        
+
         with col_skill2:
             st.markdown("**📊 Data Science**")
             st.write("• Data visualisation")
@@ -501,7 +544,7 @@ elif page == "📄 CV":
             st.write("• Analyse statistique")
             st.write("• Modélisation statistique")
             st.write("• Tests statistiques")
-        
+
         with col_skill3:
             st.markdown("**🤝 Compétences transversales**")
             st.write("• Travail en équipe")
@@ -513,29 +556,36 @@ elif page == "📄 CV":
             st.write("• Office / Office365")
 
         st.markdown("---")
-        
+
         st.markdown("## 🎓 Formations")
-        
-        st.markdown("### **Master en Statistiques et Sciences des Données** | Université de Montpellier")
+
+        st.markdown(
+            "### **Master en Statistiques et Sciences des Données** | Université de Montpellier"
+        )
         st.write("*Septembre 2023 - Août 2025 | Mention Très Bien*")
-        st.write("Modélisation statistique et probabiliste • Tests statistiques • Machine Learning • Gestion de bases de données • Développement de packages • Production de dashboards")
-        
-        st.markdown("### **Agrégation Externe de Mathématiques** | Université de Grenoble")
+        st.write(
+            "Modélisation statistique et probabiliste • Tests statistiques • Machine Learning • Gestion de bases de données • Développement de packages • Production de dashboards"
+        )
+
+        st.markdown(
+            "### **Agrégation Externe de Mathématiques** | Université de Grenoble"
+        )
         st.write("*Septembre 2007 - Août 2008 | Reçu au rang 180*")
-        
-        st.markdown("### **Master en Mathématiques Fondamentales** | Université de Grenoble")
+
+        st.markdown(
+            "### **Master en Mathématiques Fondamentales** | Université de Grenoble"
+        )
         st.write("*Septembre 2006 - Août 2009 | Mention Assez Bien*")
         st.write("Théorie géométrique des groupes • Géométrie Riemannienne")
-            
-       
+
 
 # Page Contact
 elif page == "📧 Contact":
     st.title("📧 Me Contacter")
     st.markdown("---")
-    
+
     col1, col2 = st.columns([1, 1])
-    
+
     with col1:
         st.markdown("## 📬 Informations de Contact")
         st.write("📧 guillaume.bernardreymond@gmail.com")
@@ -543,44 +593,44 @@ elif page == "📧 Contact":
         st.write("📍 Montpellier, France")
         st.write("🔗 [LinkedIn](https://www.linkedin.com/in/guillaume-bernardreymond)")
         st.write("💻 [GitHub](https://github.com/Guillaume-BR/)")
-    
-    #with col2:
+
+    # with col2:
     #    st.markdown("## ✉️ Envoyez-moi un message")
-    #    
+    #
     #    # Formulaire Formspree
     #    st.markdown("""
     #    <form action="https://formspree.io/f/VOTRE_FORM_ID" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
     #        <div>
     #            <label style="color: #e0e0e0; display: block; margin-bottom: 5px;">Nom</label>
-    #            <input type="text" name="name" required 
+    #            <input type="text" name="name" required
     #                   style="width: 100%; padding: 10px; background-color: #2d2d44; color: #e0e0e0; border: 1px solid #667BC6; border-radius: 5px;">
     #        </div>
-    #        
+    #
     #        <div>
     #            <label style="color: #e0e0e0; display: block; margin-bottom: 5px;">Email</label>
-    #            <input type="email" name="email" required 
+    #            <input type="email" name="email" required
     #                   style="width: 100%; padding: 10px; background-color: #2d2d44; color: #e0e0e0; border: 1px solid #667BC6; border-radius: 5px;">
     #        </div>
-    #        
+    #
     #        <div>
     #            <label style="color: #e0e0e0; display: block; margin-bottom: 5px;">Sujet</label>
-    #            <input type="text" name="subject" required 
+    #            <input type="text" name="subject" required
     #                   style="width: 100%; padding: 10px; background-color: #2d2d44; color: #e0e0e0; border: 1px solid #667BC6; border-radius: 5px;">
     #        </div>
-    #        
+    #
     #        <div>
     #            <label style="color: #e0e0e0; display: block; margin-bottom: 5px;">Message</label>
-    #            <textarea name="message" rows="6" required 
+    #            <textarea name="message" rows="6" required
     #                      style="width: 100%; padding: 10px; background-color: #2d2d44; color: #e0e0e0; border: 1px solid #667BC6; border-radius: 5px; resize: vertical;"></textarea>
     #        </div>
-    #        
-    #        <button type="submit" 
+    #
+    #        <button type="submit"
     #                style="background-color: #667BC6; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 600;">
     #            Envoyer 📤
     #        </button>
     #    </form>
     #    """, unsafe_allow_html=True)
-    #    
+    #
     #    st.markdown("""
     #    <div style='margin-top: 20px; padding: 15px; background-color: #2d2d44; border-radius: 5px; border-left: 4px solid #667BC6;'>
     #        <p style='margin: 0; color: #b0b0b0; font-size: 14px;'>
@@ -594,8 +644,11 @@ elif page == "📧 Contact":
 
 # Footer
 st.markdown("---")
-st.markdown("""
+st.markdown(
+    """
     <div style='text-align: center; color: #666;'>
         <p>© 2024 - Guillaume Bernard-Reymond | Créé avec ❤️ et Streamlit</p>
     </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
