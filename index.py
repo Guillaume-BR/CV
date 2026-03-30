@@ -235,7 +235,15 @@ if page == "🏠 Projets":
     # Exemple de projets (à personnaliser)
     projets = [
         {
-            "titre": "Projet 1 - Segmentation d'une séquence ADN",
+            "titre": "Projet 1 - Duo-SQL",
+            "description": "Création d'une application d'entraînement aux requêtes SQL",
+            "technos": ["Python", "Streamlit", "SQL", "DuckDB"],
+            "lien": "https://duree-hospitalisation.streamlit.app",
+            "image": "data/duo-sql.png",
+            "date": "Mars 2026",
+        },
+        {
+            "titre": "Projet 2 - Segmentation d'une séquence ADN",
             "description": "Création d'une application de segmentation d'une séquence ADN en utilisant des algorithmes basés sur les châines de Markov cachées.",
             "technos": ["R", "HMM", "Shiny"],
             "lien": "https://guillaumebr.shinyapps.io/segmention",
@@ -243,7 +251,7 @@ if page == "🏠 Projets":
             "date": "Février 2026",
         },
         {
-            "titre": "Projet 2 - La durée d'hospitalisation",
+            "titre": "Projet 3 - La durée d'hospitalisation",
             "description": "Création d'une application de prévision de la durée d'hospitalisation en fonction de différents paramètres.",
             "technos": ["Python", "ScikitLearn", "Xgboost", "Streamlit", "FastAPI"],
             "lien": "https://duree-hospitalisation.streamlit.app/",
@@ -251,15 +259,15 @@ if page == "🏠 Projets":
             "date": "Novembre 2025",
         },
         {
-            "titre": "Projet 3 - Le fléau des féminicides",
-            "description": "Création d'une",
+            "titre": "Projet 4 - Le fléau des féminicides",
+            "description": "Création d'une application de visualisation des données sur les féminicides en France.",
             "technos": ["Python", "Streamlit", "OpenAI", "Geopy", "Geopandas"],
             "lien": "https://femicide-france.streamlit.app/",
             "image": "data/feminicide.png",
             "date": "Septembre 2025",
         },
         {
-            "titre": "Projet 4 - Picross",
+            "titre": "Projet 5 - Picross",
             "description": "Développement d'un jeu de Picross en Shiny",
             "technos": ["R", "Shiny"],
             "lien": "https://maxencelamure.shinyapps.io/Picross",
@@ -267,7 +275,7 @@ if page == "🏠 Projets":
             "date": "Mars 2024",
         },
         {
-            "titre": "Projet 5 - Occitanie Quality Air Explorer",
+            "titre": "Projet 6 - Occitanie Quality Air Explorer",
             "description": "Projet de groupe sur la visualisation du taux de polluants dans l'air de certaines villes d'Occitanie",
             "technos": [
                 "Python",
@@ -282,7 +290,7 @@ if page == "🏠 Projets":
             "date": "Novembre 2023",
         },
         {
-            "titre": "Projet 6 - Meteo Montpeul",
+            "titre": "Projet 7 - Meteo Montpeul",
             "description": "Prévision météorologique à Montpellier sur 4 jours",
             "technos": ["Python", "API météo", "Quarto", "GitHub Pages", "CI/CD"],
             "lien": "https://guillaume-br.github.io/meteo-gbr/",
