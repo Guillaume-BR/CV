@@ -236,7 +236,7 @@ if page == "🏠 Projets":
     projets = [
         {
             "titre": "Projet 1 - Duo-SQL",
-            "description": "Création d'une application d'entraînement aux requêtes SQL",
+            "description": "Création d'une application d'entraînement aux requêtes SQL selon le principe de la répétition espacée avec une base de données de questions",
             "technos": ["Python", "Streamlit", "SQL", "DuckDB"],
             "lien": "https://duree-hospitalisation.streamlit.app",
             "image": "data/duo-sql.png",
